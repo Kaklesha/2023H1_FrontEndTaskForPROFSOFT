@@ -68,10 +68,6 @@ function isShowArray(array)
 
 //Task_2 (Algorihtms) Description about mistekes in progress coding:
 //В общем, как понимаю из Вашего примера A->C->L  , но L нету в качестве ключа лишь в качетве значения ложенного array
-//Алгоритм реализованный не может переварить list , так как начинает обходить левые пучки дерева,
-//А приходя в вырожденный узел, закрывает цепочку рекурсии и  выходит, и это есть ошибка кода
-
-//Update: Проблема была решена (list[head]==undefined))It where 92 line , код исправен
 
 //Для удобства list.A list.L etc. были приведены к виду "A","L"
 // т.к не понимаю как на JS без танцев с бубном реализовать это корректно (Ещё юн - исправлюсь)
@@ -118,4 +114,56 @@ function pathExist(list, head  , tail )
     //console.log( pathExist(list, 'A', 'L' ));  
     //console.log( pathExist(list, 'E', 'F' ));
 
+//Task_3 (Algorithms) Description: 
+
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+    var my_array = [];
+ 
+    for (var i = 1; i <= 100; i+=10) {
+       my_array.push(i+getRandomInt(10));
+    }
+ 
+    console.log(my_array)
+
     
+   // [9, 11, 30, 34, 49, 53, 61, 77, 85, 91]
+   let arr= [0, 9, 11, 30, 34, 49, 53, 61, 77, 85, 91, 100];
+
+//    function InterpolationSearch(t,A)          // t - искомый элемент,
+// {                                          // A - упорядоченный массив, в котором ищем.
+//     var mid, low = 0, high = A.length-1;
+
+//     while (A[low] < t && A[high] > t)
+//     {  mid = low + Math.floor( ((t-A[low])*(high-low))/(A[high]-A[low]) );
+//        if (A[mid] < t) low = mid+1;
+//        else if (A[mid] > t) high = mid-1;
+//        else return mid;
+       
+//     }
+
+//     if (A[low] === t) return low;           // На выходе индекс искомого элемента.
+//     else if (A[high] === t) return high;    // Если искомого элемента нет в массиве, то -1.
+//     else return null;
+// }
+
+//console.log(InterpolationSearch(49,arr));
+
+function BinarySearch(t,A)       // t - искомый элемент,
+{                                // A - упорядоченный массив, в котором ищем.
+    let i = 0, j = A.length, k; 
+                                 
+    while (i < j)                
+    {  k = Math.floor((i+j)/2);
+       if (t <= A[k]) j = k; // поиск в первой половине
+       else i = k+1;  // во второй
+    }
+   
+    if (A[ i ] === t) return i;     // На выходе индекс искомого элемента.
+    else return null;                 // Если искомого элемента нет в массиве, то -1.
+}
+
+console.log(BinarySearch(49,arr));
