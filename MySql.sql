@@ -36,7 +36,7 @@ values
 (N'бухгалтер'),
 (N'зам. директора'),
 (N'директор')
-select * from Positions
+-- select * from Positions
 
 
 CREATE TABLE Restaurants (
@@ -58,10 +58,10 @@ values
 
 (N'ЛавТу', N'Энгельс Свободы 77',89487652045)
 
-select * from Restaurants
+-- select * from Restaurants
 
 
-CREATE TABLE Positions (
+CREATE TABLE Employees (
     id int NOT NULL IDENTITY(1,1) PRIMARY KEY
     ,   restaurantID int NOT NULL
     ,   positionID int NOT NULL
@@ -73,4 +73,51 @@ CREATE TABLE Positions (
     FOREIGN KEY (positionID) REFERENCES 
     Positions (id) ON DELETE CASCADE
 
+
 )
+
+insert into Employees
+values
+(1,1,N'ИВан',N'ЛУчкий',89878044733),
+(2,2,N'Серёжа',N'Трунь',89878144733),
+(3,3,N'Георгий',N'Дац',89878049733),
+(4,4,N'Константин',N'Устинов',89878044733),
+(5,5,N'Дензел',N'Вашингтон',89878044733),
+(1,1,N'Брут',N'Одз',89878094733),
+(2,1,N'Вова',N'Флюс',89878024733),
+(2,1,N'Георгий',N'Мысинов',89878024733),
+-- select * from Employees
+
+-- Select Restaurants.name from Restaurants where  
+-- count(employee.positionID==1)>=2
+
+-- select IIF((Select count(Employees.positionID) 
+-- from Employees where Employees.positionID='1')='2',N'есть',N'нету') 
+-- AS Restaurants.name
+-- from Restaurants
+-- RIGHT OUTER JOIN Employees On Restaurants.id=Employees.restaurantID;
+
+select 
+IIF(
+  (Select count(Employees.positionID) from Employees where Employees.positionID=1)
+  >=2,N'Gr',N'Sd') 
+AS name
+from Restaurants
+RIGHT OUTER JOIN Employees On Restaurants.id=Employees.restaurantID;
+
+-- select 
+-- IIF((Select count(Employees.positionID) from Employees where Employees.positionID=1)>=2
+--     ,Restaurants.name) 
+-- AS Restaurants.name
+-- from Restaurants
+-- RIGHT OUTER JOIN Employees On Restaurants.id=Employees.restaurantID
+
+
+
+--IIF(OldTicket=1,N'есть',N'нету') as OldTicket" 
+-- IIF(employee.gender = 1 , N'мужчина', N'женщина') 
+
+
+--             " from digitalWorkBook" +
+--  " RIGHT OUTER JOIN employee On 
+--  digitalWorkBook.id_employee = employee.id_employee";
