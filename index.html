@@ -16,23 +16,23 @@
                 <div class="nav-menu">
                     
                     <div class="nav-menu__link">
-                        Home
+                        <a href="#home">Home</a> 
                     </div>
                     <div class="nav-menu__link">
-                        About me
+                       <a href="#aboutme">About me</a> 
                     </div>
                     <div class="nav-menu__link">
-                        Skills
+                        <a href="#skills">Skills</a>
                     </div>
                     <div class="nav-menu__link">
-                        Portfolio
+                        <a href="#portfolio">Portfolio</a>
                     </div>
                     <div class="nav-menu__link">
-                        Contacts
+                       <a href="#contacts">Contacts</a>
                     </div>
                 </div>
                 <hr>
-                <div class="start-block">
+                <div id="home" class="start-block">
                     <div class="start-block__name">Denis<br>Novik</div>
                     <div class="start-block__position">UX | Ui designer<br>24 years old, Minsk</div>
                         <div class="start-block__language">
@@ -65,8 +65,8 @@
       <main>
         <section class="container">
 
-            <div class="about-me">
-                <div class="about-me__title">About me</div>
+            <div id="aboutme" class="about-me">
+                <div class="about-me__title" onclick="translater()" >About me</div>
                 <div class="about-me__info">
                    <p> Hi, I'm Denis - UX/UI designer from Minsk.<br>
                     I'm interested in design and everything connected with it.<br><br>
@@ -74,13 +74,15 @@
                     interfaces" in IT-Academy.<br><br>
                     Ready to implement excellent projects<br>
                     with wonderful people.
-                                            </p></div>
-
+                                            </p>
+                          <p>0</p>             
+                    </div>
+                    
             </div>
 
-                 <div class="skills__pre">
+                 <div id="skills" class="skills__pre">
                     <p class="skills__title">Skills</p>
-                    <p class="skills__info">I work in such progrems as</p>
+                    <p class="skills__info">I work in such programms as</p>
                     </div>
                     <div class="skills">
                         
@@ -162,7 +164,7 @@
                     </div>
             </div>
 
-            <div class="portfolio">
+            <div id="portfolio" class="portfolio">
                 <p>Portfolio</p>
                 <div class="port_card">
                     <picture>
@@ -192,7 +194,7 @@
       </main>
       <footer>
         <section class="container">
-            <div class="contacts">
+            <div  id="contacts" class="contacts">
 
                 <div class="contacts__title">Concacts</div>
                 <div class="contacts__info">Want to know more or just chat?<br>
@@ -212,5 +214,6 @@
         </section>
         
       </footer>
+       <script src="script1.js"> </script>> 
 </body>
 </html>

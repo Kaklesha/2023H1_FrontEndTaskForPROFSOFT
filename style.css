@@ -4,35 +4,25 @@
     font-family: 'gilroybold';
     src:   url('/fonts/gilroy-bold.ttf') 
     format('truetype');
-    
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'gilroymedium';
     src:  url('/fonts/gilroy-medium.ttf')  format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-
-
     html {
        block-size: 100%;  
        color-scheme: light; 
-       
     }
-  
     body {
         /* height: inherit; unset */
-        border: 0.1rem solid black ;
-        width: clamp(316px, 90%, 943px);
-      /* min-block-size: 100%;  */
-      /* font-family: system-ui, sans-serif; */
+        /* border: 0.1rem solid black ; */
+        width: clamp(316px, 98%, 943px);
       font-family: gilroymedium;
         margin: auto;
-     
-      
     }
     /* footer{} */
     header{
@@ -40,8 +30,6 @@
     }
     .container{
         /* border: 5px solid rgb(216, 3, 3) ; */
-        /* width: min(50%, 943px); */
-        /* width: 58.9375 Rem; */
         height: auto;
         width: unset;
         margin: auto;
@@ -58,16 +46,16 @@
        flex-direction: row;
        justify-content:space-between
     }
+    .nav-menu__link a{
+        text-decoration: none;
+        
+        color: #000000;
+    }
     .nav-menu__link{
         padding: 1vmin;
         gap: 1vmin; 
         line-height: 4.3925rem;
-        /* Gilroy-Bold
-        Size
-        18px
-        Line height
-        22.28px */
-        /* font-size: 1.125rem; */
+
         font-weight: bold;
         font-size: clamp(1.125rem, (1rem + 1vw), 1.525rem);
         color: #828282;
@@ -85,29 +73,26 @@
 
    
         .start-block__name{
-            font-size: 2.9588rem;
             
+            font-size: clamp(1.125rem, (1rem + 5vw), 2.9588rem);
             font-family: gilroybold;
         line-height: 3.6631rem; 
-                    /* 58,61 px */
+                    
             font-weight: bold;
         }
         .start-block__position{
             /* font-size: 1.125rem; */
-            font-size: clamp(1.125rem, (1rem + 2vw), 1.525rem);
+            font-size: clamp(1.125rem, (1rem + 1vw), 1.525rem);
             font-family: gilroymedium;
             line-height: 1.3644rem;
             font-weight: bold;
         }
     .start-block__img img{
         width: 100% ;height: clamp(200px, 50%, 387px); 
-        /* clamp(200px, 25em, 387px) */
-         /* 58 25 */
+        
          object-fit: cover;
     object-position: 50% 50%;
-    /* object-fit: cover;
-    -o-object-position: 0 40%;
-    object-position: 0 40%; */
+    
     }
     .start-block__language{
         position: relative;
@@ -163,6 +148,7 @@
         line-height: 2.625rem; 
         margin-top: 7.5rem;
         font-size: clamp(1.125rem, (1rem + 3vw), 2.525rem);
+        cursor: pointer;
     
         
         }
@@ -187,58 +173,43 @@
         line-height: 2.625rem; 
         /* margin-top: 7.5rem; */
         font-size: clamp(1.125rem, (1rem + 3vw), 2.525rem);
-    
         }
-
-       
-
         .skills{    
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            /* border: 0.1rem solid black ; */
             font-size: clamp(1rem, (1rem + 2vw), 1.2rem);
             text-align: center;
             font-weight: bold;
             color: #828282;
             gap: 1rem;
-
         }
         @media  (max-width: 800px)
         {
             .skills
             { 
                 flex-direction: column;
-                
             }
         }
         .card{
-            /* border: 0.1rem solid rgb(160, 12, 12) ; */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            
             width: clamp(10.4038rem, (1rem + 5vw), 2.525rem);
             height: clamp(14.875rem, (1rem + 5vw), 2.525rem);
-           
         }
-       
         .stars{
             display: flex;
             flex-direction: row;
             gap: 0.5rem
         }
-        
-
         .portfolio{   
             text-align: center;
             font-family: gilroymedium;
-            /* font-size: 1.125rem; */
             font-size: clamp(1.125rem, (1rem + 2vw), 1.525rem);
             color: black;
-            
             background-color:  #F6F6F6;
             padding-bottom: 6vh ;
          }
@@ -246,32 +217,22 @@
             padding-top: 8vh;
             font-family: gilroybold;
             line-height: 2.625rem; 
-            /* margin-top: 7.5rem; */
             font-size: clamp(1.125rem, (1rem + 3vw), 2.525rem);
          }
-
          .port_card a{
             color: black;
            padding-bottom: 2vh;
          }
-
         .port_card{
                margin-bottom: 7vh;padding-top: 4vh;
-         /* border: 0.1rem solid rgb(160, 12, 12) ; */
-           
         } 
         .port_card img{
             width: 100% ;
             height: clamp(200px, 50%, 500px); 
-        /* clamp(200px, 25em, 387px) */
-         /* 58 25 */
          object-fit: cover;
     object-position: 50% 50%;
     margin-bottom: 4vh;
         }
-        /* background-color:  #F6F6F6; */
-    /* sizes="(max-width: 400px) 200px, (max-width: 800px) 100vw, 50vw" */
-
     .contacts{
         display: flex;
         flex-direction: column;
@@ -281,21 +242,16 @@
         gap: 2.5rem;
         padding: 5rem 0;
     }
-
     .contacts__title{
         font-family: gilroybold;
         line-height: 2.625rem; 
-        /* margin-top: 7.5rem; */
         font-size: clamp(1.125rem, (1rem + 3vw), 2.525rem);
     }
-
     .contacts__info{
         text-align: center;
             font-family: gilroymedium;
-            /* font-size: 1.125rem; */
             font-size: clamp(1.125rem, (1rem + 2vw), 1.525rem);
-            color: black;
-            
+            color: black;   
     }
     .contacts__btn
         {
