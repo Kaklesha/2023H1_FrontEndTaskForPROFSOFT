@@ -31,12 +31,7 @@
       /* font-family: system-ui, sans-serif; */
       font-family: gilroymedium;
         margin: auto;
-      /* display: grid; */
-      /* grid-template-columns: 35vmin 1fr; */
-      /* place-content: start center;
-      padding: 5vmin;
-      gap: 5vmin;  */
-      /* font-size: 16px; */
+     
       
     }
     /* footer{} */
@@ -44,7 +39,7 @@
         font-size: unset;
     }
     .container{
-        border: 5px solid rgb(216, 3, 3) ;
+        /* border: 5px solid rgb(216, 3, 3) ; */
         /* width: min(50%, 943px); */
         /* width: 58.9375 Rem; */
         height: auto;
@@ -66,13 +61,15 @@
     .nav-menu__link{
         padding: 1vmin;
         gap: 1vmin; 
-        line-height: 9.3925rem;
+        line-height: 4.3925rem;
         /* Gilroy-Bold
         Size
         18px
         Line height
         22.28px */
-        font-size: 1.125rem;
+        /* font-size: 1.125rem; */
+        font-weight: bold;
+        font-size: clamp(1.125rem, (1rem + 1vw), 1.525rem);
         color: #828282;
     }
     .start-block{
@@ -96,8 +93,8 @@
             font-weight: bold;
         }
         .start-block__position{
-            font-size: 1.125rem;
-            
+            /* font-size: 1.125rem; */
+            font-size: clamp(1.125rem, (1rem + 2vw), 1.525rem);
             font-family: gilroymedium;
             line-height: 1.3644rem;
             font-weight: bold;
@@ -111,16 +108,13 @@
     }
     .start-block__language{
         position: relative;
-        padding-right: 1.5rem;
+        padding-right: 2.5rem;
         /* padding-bottom: 0.1rem; */
     }
         .start-block__language__rotade{
             position: absolute;
             width: 5.25rem;
             height: 1.0656rem;
-            
-            
-            
             transform: rotate(-90deg);
         }
         .start-block__language_RU{
@@ -149,6 +143,92 @@
         font-weight: bold;
 
         }
+        .about-me{ 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color:  #F6F6F6;
+            font-family: gilroymedium;
+            /* font-size: 1.125rem; */
+            font-size: clamp(1.125rem, (1rem + 2vw), 1.525rem);
+        }
+        .about-me__title{
+            /* font-size: 2.125rem; */
+            
+            font-family: gilroybold;
+        line-height: 2.625rem; 
+        margin-top: 7.5rem;
+        font-size: clamp(1.125rem, (1rem + 3vw), 2.525rem);
     
+        
+        }
+        .about-me__info{
+           
+          
+    text-align: center;
+            /* margin-bottom: 6.6875rem; */
+            margin-bottom: 10vh;
+        }
 
+        .star_none{
+            /* color: #73ff00; */
+    
+        }
+
+        .skills__pre{
+            text-align: center;
+            font-family: gilroymedium;
+            /* font-size: 1.125rem; */
+            font-size: clamp(1.125rem, (1rem + 2vw), 1.525rem);
+            margin-bottom: 3.5rem;
+        }
+        .skills__title{
+            font-family: gilroybold;
+        line-height: 2.625rem; 
+        /* margin-top: 7.5rem; */
+        font-size: clamp(1.125rem, (1rem + 3vw), 2.525rem);
+    
+        }
+
+       
+
+        .skills{    
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            /* border: 0.1rem solid black ; */
+            font-size: clamp(1rem, (1rem + 2vw), 1.2rem);
+            text-align: center;
+            font-weight: bold;
+            color: #828282;
+            gap: 1rem;
+
+        }
+        @media  (max-width: 800px)
+        {
+            .skills
+            { 
+                flex-direction: column;
+                
+            }
+        }
+        .card{
+            /* border: 0.1rem solid rgb(160, 12, 12) ; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            width: clamp(10.4038rem, (1rem + 5vw), 2.525rem);
+            height: clamp(14.875rem, (1rem + 5vw), 2.525rem);
+           
+        }
+       
+        .stars{
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem
+        }
     /* sizes="(max-width: 400px) 200px, (max-width: 800px) 100vw, 50vw" */
