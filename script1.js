@@ -36,3 +36,14 @@ if((min.toString()).length==1) min="0"+min;
 }, 6000);  //60000 оно будет рассинхрон ловить с реальным временем
 } 
 timetotime();
+
+// navbtn()
+
+const btn = document.getElementsByClassName("nav__btn")[0];
+
+const menu = document.getElementsByClassName("header-nav")[0];
+
+function navbtn(){
+    btn.classList.toggle("is-active");
+    menu.classList.toggle("is-active");
+}
