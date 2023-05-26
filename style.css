@@ -171,11 +171,7 @@
             margin-bottom: 10vh;
         }
 
-        .star_none{
-            /* color: #73ff00; */
     
-        }
-
         .skills__pre{
             text-align: center;
             font-family: gilroymedium;
@@ -231,4 +227,45 @@
             flex-direction: row;
             gap: 0.5rem
         }
+        
+
+        .portfolio{   
+            text-align: center;
+            font-family: gilroymedium;
+            /* font-size: 1.125rem; */
+            font-size: clamp(1.125rem, (1rem + 2vw), 1.525rem);
+            color: black;
+            
+            background-color:  #F6F6F6;
+            padding-bottom: 6vh ;
+         }
+         .portfolio p {
+            padding-top: 8vh;
+            font-family: gilroybold;
+            line-height: 2.625rem; 
+            /* margin-top: 7.5rem; */
+            font-size: clamp(1.125rem, (1rem + 3vw), 2.525rem);
+         }
+
+         .port_card a{
+            color: black;
+           padding-bottom: 2vh;
+         }
+
+        .port_card{
+               margin-bottom: 7vh;padding-top: 4vh;
+         /* border: 0.1rem solid rgb(160, 12, 12) ; */
+           
+        } 
+        .port_card img{
+            width: 100% ;
+            height: clamp(200px, 50%, 500px); 
+        /* clamp(200px, 25em, 387px) */
+         /* 58 25 */
+         object-fit: cover;
+    object-position: 50% 50%;
+    margin-bottom: 4vh;
+        }
+        /* background-color:  #F6F6F6; */
     /* sizes="(max-width: 400px) 200px, (max-width: 800px) 100vw, 50vw" */
+
