@@ -167,3 +167,5 @@ function BinarySearch(t,A)       // t - искомый элемент,
 }
 
 console.log(BinarySearch(49,arr));
+
+console.log('Hello');
