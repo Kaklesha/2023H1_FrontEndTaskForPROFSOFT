@@ -169,3 +169,114 @@ function BinarySearch(t,A)       // t - искомый элемент,
 console.log(BinarySearch(49,arr));
 
 console.log('Hello');
+
+
+// for (const key in object) {
+//     if (Object.hasOwnProperty.call(object, key)) {
+//         const element = object[key];
+        
+//     }
+// }
+
+
+
+//-next-task1 // kaata 6
+let names = ["Alex", "Jacob", "Mark", "Max"];
+
+function likes(names){
+
+if(names===null||names===undefined||names.length===0) return "no one likes this";
+if(names.length===1){
+    return `${names[0]} likes this`;  //"Peter likes this"
+}
+if(names.length===2){
+    return `${names[0]} and ${names[1]} likes this`;  //"Peter likes this"
+}
+if(names.length===3){
+    return `${names[0]}, ${names[1]} and ${names[2]} likes this`;  //"Peter likes this"
+}
+
+return `${names[0]}, ${names[1]} and ${names.length-2} others likes this`;  //"Peter likes this"
+};
+console.log(likes(names));
+
+//-next-task2
+
+let deleteNth=(list, n) => { 
+
+let sublist=[];
+    let map = {};
+
+    list.forEach(element => {
+        if(element in map)
+            {
+                map[element]++;
+                if(map[element]<=n){
+                   sublist.push(element);   
+                }
+            } 
+            else {
+                map[element]=1;
+                sublist.push(element);
+                }
+    });
+return sublist;
+};
+
+// console.log(deleteNth([20,37,20,21], 1));
+// console.log(deleteNth([1,1,3,3,7,2,2,2,2], 3));
+  
+//-next-kata-7
+let rowSumOddNumbers = (n) => {
+	// TODO
+    let count=-1;
+    let sub=0;
+  for (let index = 0; index <= n; index++) {
+    //const element = array[index];
+    console.log(`__${index}__`)
+    for (let j = 0; j < index; j++) {
+        
+       // const element = array[j];
+        console.log(count+=2)
+        if(index===n){
+            sub+=count;
+        }
+    }
+  }
+  return sub;
+}
+
+// assert.strictEqual(rowSumOddNumbers(1), 1);
+// assert.strictEqual(rowSumOddNumbers(42), 74088);
+
+//console.log(`solution=${rowSumOddNumbers(42)}`);
+
+//-next-kata-6
+
+// assert.strictEqual(findUniq([ 1, 1, 1, 2, 1, 1 ]), 2);
+// assert.strictEqual(findUniq([ 1, 1, 2, 1, 1 ]), 2);
+// assert.strictEqual(findUniq([ 3, 10, 3, 3, 3 ]), 10);
+
+let findUniq = (array) =>{
+    let result=array[0];
+
+    // array.forEach(element => {
+    //     if(element!=result){
+    //         result=element;
+    //         break;
+    //     };
+    // });
+    for (let index = 0; index < array.length; index++) {
+        if(array[index]!=result){
+                    result=array[index];
+                    break;
+                };
+        
+    }
+    
+
+    return result;
+}
+
+console.log(`____${findUniq([ 1, 1, 1, 2, 1, 1 ])}`);
+console.log(`____${findUniq([ 0, 1, 0])}`);
