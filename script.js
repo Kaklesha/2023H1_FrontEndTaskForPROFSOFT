@@ -257,26 +257,29 @@ let rowSumOddNumbers = (n) => {
 // assert.strictEqual(findUniq([ 1, 1, 2, 1, 1 ]), 2);
 // assert.strictEqual(findUniq([ 3, 10, 3, 3, 3 ]), 10);
 
-let findUniq = (array) =>{
-    let result=array[0];
 
-    // array.forEach(element => {
-    //     if(element!=result){
-    //         result=element;
-    //         break;
-    //     };
-    // });
-    for (let index = 0; index < array.length; index++) {
-        if(array[index]!=result){
-                    result=array[index];
-                    break;
-                };
-        
-    }
+let findUniq = (arr) =>{
+ let result=0
+ let map={};
+
+arr.forEach(element => {
     
-
+    if(element in map){
+        map[element]++;
+    }
+    else
+    {
+        map[element]=1;
+    }
+});
+    for (let index = 0; index < arr.length; index++) {
+       if (map[arr[index]]===1) {result=arr[index]; break}
+    }
     return result;
 }
 
 console.log(`____${findUniq([ 1, 1, 1, 2, 1, 1 ])}`);
+console.log(`____${findUniq([3, 10, 3, 3, 3  ])}`);
+console.log(`____${findUniq([ 1, 0, 0])}`);
 console.log(`____${findUniq([ 0, 1, 0])}`);
+console.log(`____${findUniq([ 0, 0, 1])}`);
