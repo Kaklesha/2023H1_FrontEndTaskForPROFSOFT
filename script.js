@@ -278,8 +278,100 @@ arr.forEach(element => {
     return result;
 }
 
-console.log(`____${findUniq([ 1, 1, 1, 2, 1, 1 ])}`);
-console.log(`____${findUniq([3, 10, 3, 3, 3  ])}`);
-console.log(`____${findUniq([ 1, 0, 0])}`);
-console.log(`____${findUniq([ 0, 1, 0])}`);
-console.log(`____${findUniq([ 0, 0, 1])}`);
+// console.log(`____${findUniq([ 1, 1, 1, 2, 1, 1 ])}`);
+// console.log(`____${findUniq([3, 10, 3, 3, 3  ])}`);
+// console.log(`____${findUniq([ 1, 0, 0])}`);
+// console.log(`____${findUniq([ 0, 1, 0])}`);
+// console.log(`____${findUniq([ 0, 0, 1])}`);
+
+
+//-next-kata-6
+
+// doTest('XXI', 21);
+// 		doTest('I', 1);
+// 		doTest('IV', 4);
+// 		doTest('MMVIII', 2008);
+// 		doTest('MDCLXVI', 1666);
+
+// I          1
+// V          5
+// X          10
+// L          50
+// C          100
+// D          500
+// M          1,000
+
+let doTest = (str)=>{
+    let solution=0;
+    let map={
+        'I':1, 'L':50,
+        'V':5, 'C':100,
+        'X':10, 'D':500, 'M':1000
+    }
+    // str.forEach(element => {
+    //     if(element in map){
+    //         solution+=map[element];
+    //     }
+    // });
+
+    for (let index = 0; index < str.length; index++) {
+       
+        if(str[index] in map)
+        {
+            if(str[index]==="I")
+            {
+                if(index!=0)
+                {
+                    // if(str.length!=1&&index!=str.length&&str[index+1]!="I")
+                    // {    //DCLXIX
+
+                    //   solution-=map[str[index]]  
+                    // }
+                    // else solution+=map[str[index]];
+
+
+                   // if(str.length-1!=index+1)
+                   if(index+1<str.length)
+                    {
+                        if(str[index+1]==='I')
+                        {solution+=map[str[index]];}
+                        else{solution-=map[str[index]];}
+                    }
+                    else solution+=map[str[index]];
+                }
+                else solution+=map[str[index]];
+            }
+            else solution+=map[str[index]];        
+        }
+    }
+    return solution;
+}
+ console.log(doTest('MMVIII'));
+ console.log(doTest('MDCLXVI'));
+console.log(doTest('IV'));
+ console.log(doTest('I'));
+ console.log(doTest('XXI'));
+ console.log(doTest('DCLXIX'));
+ //DCLXIX: expected 671 to equal 669
+
+//  for (let index = 0; index < str.length; index++) {
+       
+//     if(str[index] in map)
+//     {
+//         if(str[index]==="I"&&index==0)
+//         {
+//             if(str.length!=1)
+//             {
+//               solution-=map[str[index]]  
+//             }
+//             else
+//             {
+//                 solution+=map[str[index]];
+//             }  
+//         }
+//         else{
+//                solution+=map[str[index]];
+//         }
+
+//     }
+// }
