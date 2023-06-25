@@ -313,14 +313,16 @@ let doTest = (str)=>{
     //         solution+=map[element];
     //     }
     // });
-
+    //MMCDLXXXVI: expected 2686 to equal 2486
+//2650
     for (let index = 0; index < str.length; index++) {
        
         if(str[index] in map)
         {
             if(str[index]==="I")
             {
-                if(index!=0)
+                //if(index!=0)
+                if(str.length!=1)
                 {
                     // if(str.length!=1&&index!=str.length&&str[index+1]!="I")
                     // {    //DCLXIX
@@ -346,9 +348,11 @@ let doTest = (str)=>{
     }
     return solution;
 }
+console.log(doTest('MMCDLXXXVI'));
+console.log(doTest('IV'));
  console.log(doTest('MMVIII'));
  console.log(doTest('MDCLXVI'));
-console.log(doTest('IV'));
+ //for roman number MMCDLXXXVI: expected 2686 to equal 2486
  console.log(doTest('I'));
  console.log(doTest('XXI'));
  console.log(doTest('DCLXIX'));
