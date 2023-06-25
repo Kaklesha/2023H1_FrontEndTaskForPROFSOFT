@@ -319,31 +319,36 @@ let doTest = (str)=>{
        
         if(str[index] in map)
         {
-            if(str[index]==="I")
+            if(index+1<str.length)
             {
-                //if(index!=0)
-                if(str.length!=1)
+                //if(str[index+1]==='I')
+                if(map[str[index+1]]>map[str[index]])
                 {
-                    // if(str.length!=1&&index!=str.length&&str[index+1]!="I")
-                    // {    //DCLXIX
-
-                    //   solution-=map[str[index]]  
-                    // }
-                    // else solution+=map[str[index]];
-
-
-                   // if(str.length-1!=index+1)
-                   if(index+1<str.length)
-                    {
-                        if(str[index+1]==='I')
-                        {solution+=map[str[index]];}
-                        else{solution-=map[str[index]];}
-                    }
-                    else solution+=map[str[index]];
+                    solution-=map[str[index]];
                 }
-                else solution+=map[str[index]];
+
+                else{solution+=map[str[index]];}
             }
-            else solution+=map[str[index]];        
+            else
+            {
+                solution+=map[str[index]];
+            }
+
+            // if(str[index]==="I")
+            // {
+            //     if(str.length!=1)
+            //     {
+            //        if(index+1<str.length)
+            //         {
+            //             if(str[index+1]==='I')
+            //             {solution+=map[str[index]];}
+            //             else{solution-=map[str[index]];}
+            //         }
+            //         else solution+=map[str[index]];
+            //     }
+            //     else solution+=map[str[index]];
+            // }
+            // else solution+=map[str[index]];        
         }
     }
     return solution;
