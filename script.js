@@ -301,27 +301,20 @@ arr.forEach(element => {
 // D          500
 // M          1,000
 
-let doTest = (str)=>{
+ let doTest = (str)=>{0
     let solution=0;
     let map={
         'I':1, 'L':50,
         'V':5, 'C':100,
         'X':10, 'D':500, 'M':1000
     }
-    // str.forEach(element => {
-    //     if(element in map){
-    //         solution+=map[element];
-    //     }
-    // });
     //MMCDLXXXVI: expected 2686 to equal 2486
-//2650
     for (let index = 0; index < str.length; index++) {
        
         if(str[index] in map)
         {
             if(index+1<str.length)
-            {
-                //if(str[index+1]==='I')
+            {       
                 if(map[str[index+1]]>map[str[index]])
                 {
                     solution-=map[str[index]];
@@ -332,55 +325,119 @@ let doTest = (str)=>{
             else
             {
                 solution+=map[str[index]];
-            }
-
-            // if(str[index]==="I")
-            // {
-            //     if(str.length!=1)
-            //     {
-            //        if(index+1<str.length)
-            //         {
-            //             if(str[index+1]==='I')
-            //             {solution+=map[str[index]];}
-            //             else{solution-=map[str[index]];}
-            //         }
-            //         else solution+=map[str[index]];
-            //     }
-            //     else solution+=map[str[index]];
-            // }
-            // else solution+=map[str[index]];        
+            }  
         }
     }
     return solution;
 }
-console.log(doTest('MMCDLXXXVI'));
-console.log(doTest('IV'));
- console.log(doTest('MMVIII'));
- console.log(doTest('MDCLXVI'));
- //for roman number MMCDLXXXVI: expected 2686 to equal 2486
- console.log(doTest('I'));
- console.log(doTest('XXI'));
- console.log(doTest('DCLXIX'));
- //DCLXIX: expected 671 to equal 669
+// console.log(doTest('MMCDLXXXVI'));
+// console.log(doTest('IV'));
+//  console.log(doTest('MMVIII'));
+//  console.log(doTest('MDCLXVI'));
+//  //for roman number MMCDLXXXVI: expected 2686 to equal 2486
+//  console.log(doTest('I'));
+//  console.log(doTest('XXI'));
+//  console.log(doTest('DCLXIX'));
+//  //DCLXIX: expected 671 to equal 669
 
-//  for (let index = 0; index < str.length; index++) {
-       
-//     if(str[index] in map)
-//     {
-//         if(str[index]==="I"&&index==0)
-//         {
-//             if(str.length!=1)
-//             {
-//               solution-=map[str[index]]  
-//             }
-//             else
-//             {
-//                 solution+=map[str[index]];
-//             }  
-//         }
-//         else{
-//                solution+=map[str[index]];
-//         }
+const newNum={
+    a: 11,
+    b: 14,
+    vif: {
+        g:12,
+        h:14
+    }
+}
 
-//     }
-// }
+const add = {
+    d:17,
+    e:20
+}
+// console.log(newNum);
+// console.log(add)
+
+// console.log(Object.assign(newNum,add));
+// const clone = Object.assign({},add);
+// clone.d=20;
+// console.log(clone);
+
+// const oldArray = ['a','b','c'];
+// const newArray = oldArray.slice();
+
+
+
+
+// newArray[1]='asdasdasd';
+// console.log(newArray);
+// console.log(oldArray);
+
+// const arr3=[3,5,93];
+
+// arr[99]=0;
+
+// console(arr.length);
+
+// const video = ['yu','22','42'],
+//         blogs=['wordpress','livedqd'],
+//         internet = [...video,...blogs, 'vk'];
+//         console.log(internet);
+//         function log(a,b,c) {
+//             console.log(a);
+//             console.log(b);
+//             console.log(c);
+//         }
+//         const num = [2,5,7];
+//         log(...num);
+
+        // const arrayg = ['a','b'];
+
+        // const newArray = [...array];
+
+        // const newObj = {...video};
+
+        // console.log(newObj);
+
+
+        const personalPlanPeter = {
+            name: "Peter",
+            age: "29",
+            skills: {
+                languages: ['ru', 'eng'],
+                programmingLangs: {
+                    js: '20%',
+                    php: '10%'
+                },
+                exp: '1 month'
+            }
+        };
+        
+        function showExperience(plan) {
+           return plan.skills['exp'];
+        }
+        
+        function showProgrammingLangs(plan) {
+            let subkeys = plan.skills.programmingLangs,
+            res='';
+       //Object.keys(subkeys)
+
+                for (const iterator of Object.keys(subkeys)) {
+        res+= `this lang= ${iterator} progress= ${subkeys[iterator]} `
+                  
+            }
+            return res;
+        }
+
+       console.log(showExperience(personalPlanPeter));
+        console.log(showProgrammingLangs(personalPlanPeter));
+        
+        personalPlanPeter.showProgrammingLangs=function(plan){
+
+            let subkeys = plan.skills.languages,
+            res='';
+       // Object.keys(subkeys)
+            for (const iterator of subkeys) {
+                    res+=`${iterator} `
+            }
+            return   ` me ${plan.age} old I know these ${res.toUpperCase()} languegies`
+        }
+         console.log(personalPlanPeter.showProgrammingLangs(personalPlanPeter));
