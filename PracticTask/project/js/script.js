@@ -97,11 +97,11 @@ while(main.firstChild){
 
 }
 
-const itemli = document.createElement('li');
-itemli.classList.add("promo__interactive-item");
 
 
 movieDB.movies.sort().forEach(element => {
+const itemli = document.createElement('li');
+itemli.classList.add("promo__interactive-item");
 console.log(element);
 
 //itemli.insertAdjacentHTML('afterend',` ${element} <div class="delete"></div>`)
