@@ -62,13 +62,11 @@ console.log(com);
 com[0].innerHTML="Drama"
 
 const bg = document.querySelector('.promo__bg')
-//const bg = document.getElementsByClassName('promo__bg');
 
 //bg.style.width = '50%' 
 //bg.style.backgroundImage="../img/bg.jpg";
 
 bg.style.backgroundImage="url(img/bg.jpg)"; // specify the image path here
-//console.log(bg);
 
 
 const movieDB = {
@@ -90,27 +88,51 @@ const item = main.querySelectorAll('.promo__interactive-item')
 // console.log(element);
 // });
 
-console.log(item);
 
-while(main.firstChild){
-    main.removeChild(main.lastChild);
+//___Удаление рекламы______________
+// console.log(item);
 
-}
+// while(main.firstChild){
+//     main.removeChild(main.lastChild);
 
+// }
+//______________________________
+//Версия автора
+const adv = document.querySelectorAll('.promo__adv img'),
+    poster = document.querySelector('.promo__bg'),
+    genre = poster.querySelector('.promo__genre'),
+    movieList = document.querySelector('.promo__interactive-list');
+//  1 task
+    adv.forEach(item => {item.remove();});
+//2 task
+    genre.textContent='Драма'
+//3 task
+    poster.style.backgroundImage='url("img/bg.jpg")';
+//4
+    movieList.innerHTML="";
+//movieDB.movies.sort()
+    movieDB.movies.sort().forEach((film, i)=>{
+        movieList.innerHTML+=`
+        <li class="promo__interactive-item">
+        ${i+1} ${film}
+        <div class="delete"></div>
+        </li>
+        `;
+    });
+//4---------------------------
 
+// movieDB.movies.sort().forEach(element => {
+// const itemli = document.createElement('li');
+// itemli.classList.add("promo__interactive-item");
+// console.log(element);
 
-movieDB.movies.sort().forEach(element => {
-const itemli = document.createElement('li');
-itemli.classList.add("promo__interactive-item");
-console.log(element);
+// //itemli.insertAdjacentHTML('afterend',` ${element} <div class="delete"></div>`)
+// itemli.innerHTML=` ${element} <div class="delete"></div>`;
+// main.append(itemli);
+// //ite.innerHTML = "<p>Hello world<p>";
+// });
 
-//itemli.insertAdjacentHTML('afterend',` ${element} <div class="delete"></div>`)
-itemli.innerHTML=` ${element} <div class="delete"></div>`;
-main.append(itemli);
-//ite.innerHTML = "<p>Hello world<p>";
-});
-
-
+//---end-4----------------------------------
 // div.insertAdjacentHTML('afterbegin','<h2>hell</h2>')
 
 //const div = document.createElement('div');
