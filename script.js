@@ -537,7 +537,7 @@ const students = [
 
 const box = document.getElementById('box');
 const hearts = document.querySelectorAll('.heart');
-const onehearts= document.querySelector('.box');
+//const onehearts= document.querySelector('.box1');
 const btns = document.getElementsByTagName('button');
 const circle = document.getElementsByClassName('circle');
 const wrapper =document.querySelector('.wrapper');
@@ -584,9 +584,61 @@ box.style.cssText='background-color:yellow; width: 10 hv;'
 //wrapper.appendChild(div);
 //wrapper.insertBefore(div,hearts[3]);
 
-wrapper.removeChild(hearts[2]);
+//wrapper.removeChild(hearts[2]);
 
-//hearts.removeChild(hearts[2]);
+// //hearts.removeChild(hearts[2]);
 
- console.log(23424);
-// //d
+//  console.log(23424);
+// // //d
+
+
+//const onehearts= document.querySelectorAll('.box1');
+
+const onehearts=document.querySelector('.box')
+
+const ff= onehearts.getElementsByTagName('div');
+console.log(ff);
+
+//  ff.forEach(item =>{
+//      console.log(item);
+    
+//  });
+
+for (let index = 0; index < ff.length; index++) {
+    console.log(ff[index]);
+    
+}
+
+
+//console.log(onehearts);
+
+// onehearts.forEach(element => {
+
+//     console.log(element);
+    
+//       });
+      
+//wrapper.removeChild(hearts[1],hearts[3])
+const onehearts1= document.querySelectorAll('.box1');
+
+wrapper.replaceChild(onehearts1[1],hearts[1])
+
+const div = document.createElement('div');
+
+div.classList.add('black');
+
+wrapper.append(div);
+
+div.innerHTML = "<p>Hello world<p>";
+
+//div.textContent= "Hello";
+
+div.insertAdjacentHTML('beforebegin','<h2>hell</h2>')
+
+div.insertAdjacentHTML('afterbegin','<h2>hell</h2>')
+
+div.insertAdjacentHTML('beforeend','<h2>hell</h2>')
+div.insertAdjacentHTML('beforebegin','<h2>hell</h2>')
+
+
+
