@@ -594,20 +594,20 @@ box.style.cssText='background-color:yellow; width: 10 hv;'
 
 //const onehearts= document.querySelectorAll('.box1');
 
-const onehearts=document.querySelector('.box')
+// const onehearts=document.querySelector('.box')
 
-const ff= onehearts.getElementsByTagName('div');
-console.log(ff);
+// const ff= onehearts.getElementsByTagName('div');
+// console.log(ff);
 
 //  ff.forEach(item =>{
 //      console.log(item);
     
-//  });
+// //  });
 
-for (let index = 0; index < ff.length; index++) {
-    console.log(ff[index]);
+// for (let index = 0; index < ff.length; index++) {
+//     console.log(ff[index]);
     
-}
+// }
 
 
 //console.log(onehearts);
@@ -640,5 +640,197 @@ div.insertAdjacentHTML('afterbegin','<h2>hell</h2>')
 div.insertAdjacentHTML('beforeend','<h2>hell</h2>')
 div.insertAdjacentHTML('beforebegin','<h2>hell</h2>')
 
+//45 lesson event in JS 
+const btn = document.querySelector('button'),
+        overlay=document.querySelector('.overlay');
 
+// btn.onclick = function(){
+//     alert("Click")
+// };
+
+// btn.onclick = function(){
+//     alert("seClick")
+// };
+
+// btn.addEventListener('click', ()=>{
+//     alert('cliifc');
+// });
+
+// btn.addEventListener('click', ()=>{
+//     alert('cl23iifc');
+// });
+
+
+
+// btn.addEventListener('mouseenter', (event)=>{
+//     console.log(event.target);
+//     //event.target.remove();
+//      console.log('hover');
+// });
+
+let ii=0;
+const deleteElement = (event)=>{
+    //event.target.remove();
+  console.log(event.currentTarget);
+  console.log(event.type);
+//   i++;
+//   if(1==i){
+//     btn.removeEventListener('mouseenter', deleteElement);
+//   }
+
+};
+
+ btn.addEventListener('click', deleteElement);
+overlay.addEventListener('click', deleteElement);
+
+
+//for disable event default making
+const link = document.querySelector('a');
+link.addEventListener('click', (event)=>{
+    event.preventDefault();
+    console.log(event.target);
+});
+ //object option event (capture / once / passive /
+ // mozSystemGroup)
+ const btnsr = document.querySelectorAll('button');
+
+ btnsr.forEach(btn => {
+    btn.addEventListener('click',(event)=>{
+        console.log('hello', event.currentTarget);
+    },{once:true})
+ });
+
+//46 tast
+
+// console.log(document.documentElement);
+// //childrens body позволяет получить все узлы внутри родителя
+// console.log(document.body.childNodes);
+
+// console.log(document.body.firstChild);
+// console.log(document.body.firstElementChild);
+
+// console.log(document.body.lastChild);
+////переход по веткам родителя
+// console.log(document.querySelector('#current')
+// );
+// console.log(document.querySelector('#current').parentNode
+// );
+// console.log(document.querySelector('#current').parentNode.parentNode
+// );
+//  //
+
+// console.log(document.querySelector('[data-current="3"]').nextSibling);
+
+// ////для всех элементов этого урока есть расширение element для получения элементов
+// console.log(document.querySelector('[data-current="3"]').nextElementSibling);
+
+
+//// Для перебора псевдомассива используется фор оф
+// for( let node of document.body.childNodes){
+//    // node.nodeName=='#text'?{continue}:{}
+//    if(node.nodeName=='#text')continue
+// console.log(node);}
+
+// //01.07.23 __ nn
+
+//     let result =1;
+// const pow =(x,n)=>{
+//     if(n===1){
+//         return x;
+//     } else{
+//         return x*pow(x,n-1);
+//     }
+// }
+// //глубина функций
+//console.log(pow(2,8));
+
+let student ={
+    js:[
+        {name:'John', progress:100},
+        {name: 'Ivan', progress:60}
+       ],
+    html:
+    {
+        basic:
+        [
+            {name:'Peter', progress:20},
+            {name: 'Ann', progress:18}
+        ],
+
+        pro:
+        [
+            {name:'Sam', progress:10},
+        ]
+    }
+};
+
+// const getTotalProgressByIteration = (data)=>{
+//     let total =0;
+//     let student=0;
+
+//     for (let course of Object.values(data)) {
+//          if(Array.isArray(course))
+//         //console.log(iterator);
+//         {
+//             student+=course.length;
+
+//             for (let index = 0; index < course.length; index++) {
+//                 total +=course[index].progress;
+//             }
+//         }
+//         else
+//         {
+//             for (let subcourse of Object.values(course)) 
+//             {
+//                 student+=subcourse.length;
+             
+                
+//                 for (let index = 0; index < subcourse.length; index++) {
+//                     total +=subcourse[index].progress;
+//                 }
+//             }
+        
+//         }
+//     }
+
+//     return total / student;
+// }
+    // console.log(getTotalProgressByIteration(student));
+
+const getTotalProgressByIteration = (data)=>{
+
+      if(Array.isArray(data)){
+        let total=0;
+        //console.log(iterator);
+        
+            
+            for (let index = 0; index < data.length; index++) {
+                total +=data[index].progress;
+            }
+        
+            return [total,data.length]; 
+    }
+    else
+    {
+        let  total=[0,0];
+
+        for (const subData of Object.values(data)) {
+
+            const subDataArr = getTotalProgressByIteration(subData);
+
+            total[0]+=subDataArr[0];            
+            total[1]+=subDataArr[1];
+
+        }
+
+        return total;
+    }
+
+};
+
+const result = getTotalProgressByIteration(student);
+
+console.log(result[0]/result[1]
+);    
+    // console.log(getTotalProgressByIteration(student));
 
