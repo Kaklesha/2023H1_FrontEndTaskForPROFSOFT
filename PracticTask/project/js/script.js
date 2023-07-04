@@ -213,6 +213,12 @@ checkbox=addForm.querySelector('[type="checkbox"]');
                 {
                     newFilm=`${newFilm.substring(0,22)}...`
                 }
+
+
+            if(favorite){
+console.log("Добавляем любимый фильм");
+ }
+
         movieDB.movies.push(newFilm);
         sortArr( movieDB.movies);
         createMovieList(movieDB.movies,movieList);
@@ -227,6 +233,7 @@ checkbox=addForm.querySelector('[type="checkbox"]');
        
     function createMovieList(films, parent){
         parent.innerHTML="";
+        sortArr( films);
         //movieDB.movies.sort()
         films.forEach((film, i)=>{
                 parent.innerHTML+=`
@@ -250,7 +257,7 @@ checkbox=addForm.querySelector('[type="checkbox"]');
     
     deleteAdv(adv);
     makeChanges();
-    sortArr( movieDB.movies);
+    
     createMovieList(movieDB.movies,movieList);
 
 })
