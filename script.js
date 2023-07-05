@@ -834,3 +834,30 @@ console.log(result[0]/result[1]
 );    
     // console.log(getTotalProgressByIteration(student));
 
+
+
+//touchstart
+//touchmove
+//touchend
+//touchenter
+//touchleave
+//touchcancel
+
+window.addEventListener("DOMContentLoader", ()=>{
+    const box = docement.querySelector('.box');
+//This code don't work at my brouser
+        box.addEventListener('touchstart',(e)=>{
+            e.preventDefault();
+            console.log('start');    
+        })
+//This code don't work at my brouser
+        box.addEventListener('touchmove',(e)=>{
+            e.preventDefault();
+            console.log('move');    
+        })
+
+
+    })
+//touches
+//targetTouches
+//changedTouches 

@@ -261,3 +261,20 @@ console.log("Добавляем любимый фильм");
     createMovieList(movieDB.movies,movieList);
 
 })
+
+//touchstart
+//touchmove
+//touchend
+//touchenter
+//touchleave
+//touchcancel
+
+window.addEventListener("DOMContentLoader", ()=>{
+    const box = docement.querySelector('.box');
+
+    box.addEventListener('touchstart',(e)=>{
+        e.preventDefault();
+console.log(        start
+);    })
+})
+
