@@ -17,23 +17,23 @@ const text ='Hello world!';
 //Стандартные св-ва через CamelCase class->className
 //Обьекты не выводятся через {"интерполяция"}
 
-const elem =(
-  <div>
-    <h2 className='fff' tabIndex={0}>Text: {text}</h2>
-      <input type="text" />
-     <button>Click</button>
-     <label htmlFor=""></label>
-     <button class='ddd' />
+// const elem =(
+//   <div>
+//     <h2 className='fff' tabIndex={0}>Text: {text}</h2>
+//       <input type="text" />
+//      <button>Click</button>
+//      <label htmlFor=""></label>
+//      <button class='ddd' />
     
-  </div>
-)
+//   </div>
+// )
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  //   <App />
+    <App />
   // </React.StrictMode>
-  elem
+  //elem
 
 );
 
