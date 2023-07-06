@@ -17,8 +17,10 @@ class App  extends Component {
                 {name: 'Иван' , salary: '8000' ,increase:true, id:1},
                 {name: 'Вася' , salary: '11900',increase:false, id:2},
                 {name: 'Коля' , salary: '21000',increase:true, id:3}
-            ]
+            ],
+           
         }
+        this. lastId= 4;
     }
  
     deleteItem =(id)=>{
@@ -41,6 +43,45 @@ class App  extends Component {
         })
     }
 
+    // addItem = (name,salary) =>{
+
+    //     console.log(`___ ${name}  ${salary} `);
+
+    //     this.setState(({data})=>{
+    //         let arr=data.slice();
+    //         const ff = {
+    //             name: name,
+    //             salary: salary,
+    //             increase:false,
+    //             id: this.lastId++
+    //         };
+          
+    //         arr.push(ff);
+    //         return{
+    //            data: arr
+    //         }
+    //     })
+    // }
+
+    addItem = (name,salary) =>{
+    const newItem={
+        name,
+        salary,
+        increase: false,
+        id: this.lastId++
+    }
+    this.setState(({data})=>{
+        const newArr = [...data,newItem];
+        return {
+            data: newArr
+        }
+    });
+    }
+    
+
+
+
+
   render(){
     return(
         <div className="app">
@@ -55,7 +96,9 @@ class App  extends Component {
             data={this.state.data} 
             onDelete={this.deleteItem}
             />
-            <EmployeesAddForm/>
+            <EmployeesAddForm
+            onAddItem={this.addItem}
+            />
         </div>
     )
   }

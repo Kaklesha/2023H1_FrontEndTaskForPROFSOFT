@@ -12,7 +12,6 @@ class EmployeesAddForm extends Component {
         }
     }
 
-
     onValueChange=(e)=>{
         this.setState(
             {
@@ -21,7 +20,12 @@ class EmployeesAddForm extends Component {
             }
         )
     }
+//this.state.name,this.state.salary
 
+    onClickAddItem=(e)=>{
+        e.preventDefault();
+        this.props.onAddItem( (this.state.name).toString(),Number(this.state.salary))}
+       
 
    render(){
 
@@ -39,7 +43,7 @@ class EmployeesAddForm extends Component {
                         placeholder="3\П в RUB" value={salary} name="salary" onChange={this.onValueChange}/>
                 
                   <button type="submit"
-                        className="btn btn-outline-light">Добавить</button>
+                        className="btn btn-outline-light" onClick={this.onClickAddItem}>Добавить</button>
             </form>
 
 
