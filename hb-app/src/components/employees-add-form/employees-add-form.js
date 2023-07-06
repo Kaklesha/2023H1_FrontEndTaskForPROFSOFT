@@ -4,7 +4,7 @@ const EmployeesAddForm = () => {
     return (
         <div className="app-add-form">
             <h3>Добавьте нового сотрудника</h3>
-            <from 
+            <form 
                 className="add-form d-flex">
 
                 <input type="text"
@@ -15,7 +15,7 @@ const EmployeesAddForm = () => {
                     placeholder="З/П в $?" />
                 <button type="submit"
                     className="btn btn-outline-light">Добавить</button>
-            </from>
+            </form>
         </div>
     )
 }
