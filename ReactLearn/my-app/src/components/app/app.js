@@ -112,14 +112,14 @@ class App  extends Component {
         // this.setState({rise});
 
         return items.filter(item=>{
-            return item.salary.slice(-3,0)>20000
+            return item.salary>20000
             
         })}
         
 
   render(){
 
-    const{data,term,rise}=this.state;
+    const{data,term,rise,cost}=this.state;
 
     const employees = this.state.data.length;
     const increased = this.state.data.filter(item=>item.increase).length;

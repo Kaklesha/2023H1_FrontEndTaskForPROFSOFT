@@ -30,7 +30,7 @@ class AppFilter extends Component{
         const cost = e.target.value;
 
             console.log(`cc ${cost}`);
-            this.props.onfilterRise(cost);
+            this.props.onfilterCost(cost);
 
             this.setState(({cost})=>{
                 return {
