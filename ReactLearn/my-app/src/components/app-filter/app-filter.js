@@ -5,10 +5,12 @@ class AppFilter extends Component{
     constructor(props){
         super(props);
         this.state={
-            rise: false
+            rise: false,
+            cost: false
         }
     }
 
+    
 
     onRise=(e)=>{
         const rise = e.target.value;
@@ -22,16 +24,22 @@ class AppFilter extends Component{
                 }
              })
              console.log(`gg ${rise}`);
-        //  this.setState(({rise})=>{
-        //     return {
-        //         rise: true
-        //     }
-        //  })
-        //  console.log(`gg ${this.state.rise}`);
-        // //this.setState({rise});
-        // 
-        // console.log(`ggh ${this.state.rise}`);
+
     }   
+    onCost=(e)=>{
+        const cost = e.target.value;
+
+            console.log(`cc ${cost}`);
+            this.props.onfilterRise(cost);
+
+            this.setState(({cost})=>{
+                return {
+                    cost: false
+                }
+             })
+             console.log(`cc ${cost}`);
+
+    } 
 
    render(){
     return(
@@ -54,7 +62,8 @@ class AppFilter extends Component{
 
             <button
             className='btn btn-outline-light'
-            type='button'>
+            type='button'  value={true}
+            onClick={this.onCost}>
             З\П более 50000 руб
             </button>
         </div>

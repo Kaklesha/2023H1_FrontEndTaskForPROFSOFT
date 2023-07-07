@@ -19,7 +19,8 @@ class App  extends Component {
                 {name: 'Коля' , salary: '21000',increase:true, id:3 , like:false}
             ],
             term: '',
-            rise: false
+            rise: false,
+            cost: false
         }
         this. lastId= 4;
     }
@@ -81,7 +82,7 @@ class App  extends Component {
         })
 
     }
-
+ 
     onUpdateSearch=(term)=>{
         this.setState({term});
     }
@@ -97,15 +98,24 @@ class App  extends Component {
 
         return items.filter(item=>{
             if(item.like){ return item}
-        }
-        )
-
-        
-
-        }
+        })}
        
-    
 
+    onfilterCost=(cost)=>{
+        this.setState({cost});
+    }
+
+    filterCost=(items,cost)=>{
+
+        if(cost===false)return items;
+        
+        // this.setState({rise});
+
+        return items.filter(item=>{
+            return item.salary.slice(-3,0)>20000
+            
+        })}
+        
 
   render(){
 
@@ -114,9 +124,14 @@ class App  extends Component {
     const employees = this.state.data.length;
     const increased = this.state.data.filter(item=>item.increase).length;
 
-   // const visibleData=this.searchEmp(data,term);
+    let visibleData=this.searchEmp(data,term);
 
-   const visibleData=this.filterRise(data,rise);
+   visibleData=this.filterRise(visibleData,rise);
+
+   visibleData=this.filterCost(visibleData,cost);
+
+
+
     return(
         <div className="app">
             <AppInfo
@@ -130,6 +145,7 @@ class App  extends Component {
                 onUpdateSearch={this.onUpdateSearch}/>
                 <AppFilter
                  onfilterRise={this.onfilterRise}
+                 onfilterCost={this.onfilterCost}
                 />
                 
             </div>
