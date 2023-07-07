@@ -14,9 +14,9 @@ class App  extends Component {
         super(props)
         this.state={
             data: [
-                {name: 'Иван' , salary: '8000' ,increase:true, id:1},
-                {name: 'Вася' , salary: '11900',increase:false, id:2},
-                {name: 'Коля' , salary: '21000',increase:true, id:3}
+                {name: 'Иван' , salary: '8000' ,increase:true, id:1 , like:true},
+                {name: 'Вася' , salary: '11900',increase:false, id:2 , like:false},
+                {name: 'Коля' , salary: '21000',increase:true, id:3 , like:false}
             ],
            
         }
@@ -68,6 +68,7 @@ class App  extends Component {
         name,
         salary,
         increase: false,
+        like: false,
         id: this.lastId++
     }
     this.setState(({data})=>{
@@ -77,9 +78,36 @@ class App  extends Component {
         }
     });
     }
-    
+    ////This is Update random obj (?)
+    onToggleIncrease = (id)=>{
+        //console.log(`Increase this ${id}`);
+            // this.setState(({data})=>{
+            //     const index = data.findIndex(elem=>elem.id===id);
+            //     const old =data[index];
+            //     const newItem={...old, increase: !old.increase}; //this is new obj now
 
+            //     const newArr=[...data.slice(0,index), newItem, ...data.slice(index+1)];
 
+            //     return{
+            //         data: newArr
+            //     }
+            // })
+
+            ////2 version
+            this.setState(({data})=>({
+                data: data.map(item=>{
+                    if(item.id===id){
+                        return{...item,increase: !item.increase}
+                    }
+                    return item;
+                    ////
+                })
+            }))
+    }
+
+    onToggleRise=(id)=>{
+        console.log(`Rise this${id}`);
+    }
 
 
   render(){
@@ -95,6 +123,9 @@ class App  extends Component {
             <EmployeesList 
             data={this.state.data} 
             onDelete={this.deleteItem}
+            onToggleIncrease={this.onToggleIncrease}
+            onToggleRise={this.onToggleRise}
+            
             />
             <EmployeesAddForm
             onAddItem={this.addItem}
