@@ -10,9 +10,16 @@ class EmployeesAddForm extends Component {
         }
     }
 
-    bruh = (e) => {
+    preventMethod = (e) => {
         e.preventDefault();
-        this.props.onAdd(this.state.name, this.state.salary);
+        const {name, salary} = this.state;
+        if (name.length > 3 && salary.length > 0 && salary >= 0){
+            this.props.onAdd(this.state.name, this.state.salary);
+        }
+        this.setState({
+            name: "",
+            salary: ""
+        })
     }
 
     onValueChange = (e) => {
@@ -43,7 +50,7 @@ class EmployeesAddForm extends Component {
                         name="salary"
                         value={salary}
                         onChange={this.onValueChange}/>
-                    <button onClick={this.bruh} type="submit"
+                    <button onClick={this.preventMethod} type="submit"
                         className="btn btn-outline-light">Добавить</button>
                 </form>
             </div>

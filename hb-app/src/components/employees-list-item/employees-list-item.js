@@ -1,52 +1,30 @@
 import "./employees-list-item.css";
-import { Component } from 'react';
 
-class EmployeesListItem extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            increase: false,
-            isLike: false
-        }
-    }
+const EmployeesListItem = (props) => {
 
-    incrSalary = () => {
-        this.setState(({increase}) => ({
-            increase: !increase
-        }))
-    }
+    const {name, salary, onDelete, onToggleProp, isIncrease, isRise} = props;
+    const incr = isIncrease ? " increase" : "";
+    const rise = isRise ? " like" : "";
 
-    setLike = () => {
-        this.setState(({isLiked}) => ({
-            isLiked: !isLiked
-        }))
-    }
+    return (
+        <li className={"list-group-item d-flex justify-content-between" + incr + rise}>
+            <span onClick={onToggleProp} className="list-group-item-label" data-toggle="isRise">{name}</span>
+            <input type='text' className="list-group-item-input" defaultValue={salary + "$"}/>
+            <div className="d-flex justify-content-center align-item-center">
+                <button onClick={onToggleProp} type="button"
+                    className ="btn-cookie btn-sm"
+                    data-toggle="isIncrease">
+                    <i className='fas fa-cookie'></i>
+                </button>
 
-    render() {
-        const {name, salary, onDelete} = this.props;
-        const {increase, isLiked} = this.state;
-        const incr = increase ? " increase" : "";
-        const like = isLiked ? " like" : "";
-    
-        return (
-            <li className={"list-group-item d-flex justify-content-between" + incr + like}>
-                <span onClick={this.setLike} className="list-group-item-label">{name}</span>
-                <input type='text' className="list-group-item-input" defaultValue={salary + "$"}/>
-                <div className="d-flex justify-content-center align-item-center">
-                    <button onClick={this.incrSalary} type="button"
-                        className ="btn-cookie btn-sm">
-                        <i className='fas fa-cookie'></i>
-                    </button>
-    
-                    <button onClick={onDelete} type="button"
-                        className="btn-trash btn-sm">
-                        <i className='fas fa-trash'></i>
-                    </button>
-                    <i className="fas fa-star"></i>
-                </div>
-            </li>
-        )
-    }
+                <button onClick={onDelete} type="button"
+                    className="btn-trash btn-sm">
+                    <i className='fas fa-trash'></i>
+                </button>
+                <i className="fas fa-star"></i>
+            </div>
+        </li>
+    )
 }
 
 export default EmployeesListItem;
