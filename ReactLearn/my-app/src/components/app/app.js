@@ -18,8 +18,8 @@ class App  extends Component {
                 {name: 'Вася' , salary: '11900',increase:false, id:2 , like:false},
                 {name: 'Коля' , salary: '21000',increase:true, id:3 , like:false}
             ],
-            term: ''
-           
+            term: '',
+            rise: false
         }
         this. lastId= 4;
     }
@@ -82,22 +82,45 @@ class App  extends Component {
 
     }
 
-onUpdateSearch=(term)=>{
-    this.setState({term});
-}
+    onUpdateSearch=(term)=>{
+        this.setState({term});
+    }
+    onfilterRise=(rise)=>{
+        this.setState({rise});
+    }
+
+    filterRise=(items,rise)=>{
+
+        if(rise===false)return items;
+        
+       // this.setState({rise});
+
+        return items.filter(item=>{
+            if(item.like){ return item}
+        }
+        )
+
+        
+
+        }
+       
+    
+
 
   render(){
 
-    const{data,term}=this.state;
+    const{data,term,rise}=this.state;
 
     const employees = this.state.data.length;
     const increased = this.state.data.filter(item=>item.increase).length;
-    const visibleData=this.searchEmp(data,term);
 
+   // const visibleData=this.searchEmp(data,term);
+
+   const visibleData=this.filterRise(data,rise);
     return(
         <div className="app">
             <AppInfo
-          
+        
            employees={employees}
            increased={increased}
             />
@@ -105,7 +128,9 @@ onUpdateSearch=(term)=>{
             <div className="search-panel">
                 <SearchPanel
                 onUpdateSearch={this.onUpdateSearch}/>
-                <AppFilter/>
+                <AppFilter
+                 onfilterRise={this.onfilterRise}
+                />
                 
             </div>
             <EmployeesList 
