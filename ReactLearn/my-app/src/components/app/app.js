@@ -42,27 +42,6 @@ class App  extends Component {
 
         })
     }
-
-    // addItem = (name,salary) =>{
-
-    //     console.log(`___ ${name}  ${salary} `);
-
-    //     this.setState(({data})=>{
-    //         let arr=data.slice();
-    //         const ff = {
-    //             name: name,
-    //             salary: salary,
-    //             increase:false,
-    //             id: this.lastId++
-    //         };
-          
-    //         arr.push(ff);
-    //         return{
-    //            data: arr
-    //         }
-    //     })
-    // }
-
     addItem = (name,salary) =>{
     const newItem={
         name,
@@ -80,60 +59,31 @@ class App  extends Component {
     }
     ////This is Update random obj (?)
     onToggleIncrease = (id)=>{
-        //console.log(`Increase this ${id}`);
-            // this.setState(({data})=>{
-            //     const index = data.findIndex(elem=>elem.id===id);
-            //     const old =data[index];
-            //     const newItem={...old, increase: !old.increase}; //this is new obj now
 
-            //     const newArr=[...data.slice(0,index), newItem, ...data.slice(index+1)];
-
-            //     return{
-            //         data: newArr
-            //     }
-            // })
-            ////2 version this better code
             this.setState(({data})=>({
                 data: data.map(item=>{
                     if(item.id===id){
                         return{...item,increase: !item.increase}
                     }
                     return item;
-                    ////
                 })
             }))
     }
-
-
-    countEmployees=()=>{
-        console.log(this.state.data.length);
-        return( this.state.data.length)
-    }
-
-    countIncrease=()=>{
-        let countIns=0;
-        this.state.data.map(item=>{
-            if(item.increase===true){
-                countIns++;
-            }
-        })
-
-        return countIns;
-    }
-
 
     onToggleRise=(id)=>{
         console.log(`Rise this${id}`);
     }
 
-
   render(){
+
+    const employees = this.state.data.length;
+    const increased = this.state.data.filter(item=>item.increase).length;
     return(
         <div className="app">
             <AppInfo
-           
-            countEmployees={this.countEmployees()}
-            countIncrease={this.countIncrease()}
+          
+           employees={employees}
+           increased={increased}
             />
 
             <div className="search-panel">
