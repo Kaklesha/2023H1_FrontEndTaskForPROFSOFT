@@ -92,8 +92,7 @@ class App  extends Component {
             //         data: newArr
             //     }
             // })
-
-            ////2 version
+            ////2 version this better code
             this.setState(({data})=>({
                 data: data.map(item=>{
                     if(item.id===id){
@@ -105,6 +104,14 @@ class App  extends Component {
             }))
     }
 
+
+    countEmployees=()=>{
+        console.log(this.state.data.length);
+        return( this.state.data.length)
+    }
+
+
+
     onToggleRise=(id)=>{
         console.log(`Rise this${id}`);
     }
@@ -113,7 +120,10 @@ class App  extends Component {
   render(){
     return(
         <div className="app">
-            <AppInfo/>
+            <AppInfo
+           
+            countEmployees={this.countEmployees()}
+            />
 
             <div className="search-panel">
                 <SearchPanel/>
@@ -128,7 +138,7 @@ class App  extends Component {
             
             />
             <EmployeesAddForm
-            onAddItem={this.addItem}
+            onAddItem={this.addItem} 
             />
         </div>
     )
