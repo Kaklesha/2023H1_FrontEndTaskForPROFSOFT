@@ -14,15 +14,17 @@ class App  extends Component {
         super(props)
         this.state={
             data: [
-                {name: 'Иван' , salary: '8000' ,increase:true, id:1 , like:true},
-                {name: 'Вася' , salary: '11900',increase:false, id:2 , like:false},
-                {name: 'Коля' , salary: '21000',increase:true, id:3 , like:false}
+                {name: 'Иван' , salary: '8000' ,increase:false, id:1 , like:true},
+                {name: 'Егор' , salary: '17000' ,increase:false, id:2 , like:false},
+                {name: 'Вася' , salary: '25900',increase:false, id:3 , like:false},
+                {name: 'Коля' , salary: '21000',increase:true, id:4 , like:false}
             ],
-            term: '',
-            rise: false,
-            cost: false
+
+            
+            term: '', filter: 'all'
+           
         }
-        this. lastId= 4;
+        this. lastId= 5;
     }
  
     deleteItem =(id)=>{
@@ -82,54 +84,38 @@ class App  extends Component {
         })
 
     }
- 
     onUpdateSearch=(term)=>{
         this.setState({term});
     }
-    onfilterRise=(rise)=>{
-        this.setState({rise});
-    }
+ 
+    filterPost=(items,filter)=>{
+            switch(filter)
+            {
+                case 'rise':
+                    return items.filter(item=>item.like);
+                case 'moreThen20000':
+                    return items.filter(item=> item.salary>20000)
+                default:
+                    return items
+                
+            }
 
-    filterRise=(items,rise)=>{
+        }
+    
 
-        if(rise===false)return items;
-        
-       // this.setState({rise});
-
-        return items.filter(item=>{
-            if(item.like){ return item}
-        })}
-       
-
-    onfilterCost=(cost)=>{
-        this.setState({cost});
-    }
-
-    filterCost=(items,cost)=>{
-
-        if(cost===false)return items;
-        
-        // this.setState({rise});
-
-        return items.filter(item=>{
-            return item.salary>20000
-            
-        })}
-        
+            onFilterSelect=(filter)=>{
+                this.setState({filter});
+            }
 
   render(){
 
-    const{data,term,rise,cost}=this.state;
+    const{data,term,filter}=this.state;
 
     const employees = this.state.data.length;
     const increased = this.state.data.filter(item=>item.increase).length;
 
-    let visibleData=this.searchEmp(data,term);
-
-   visibleData=this.filterRise(visibleData,rise);
-
-   visibleData=this.filterCost(visibleData,cost);
-
+    let visibleData=this.filterPost(this.searchEmp(data,term), filter);
+ 
 
 
     return(
@@ -144,8 +130,8 @@ class App  extends Component {
                 <SearchPanel
                 onUpdateSearch={this.onUpdateSearch}/>
                 <AppFilter
-                 onfilterRise={this.onfilterRise}
-                 onfilterCost={this.onfilterCost}
+                onFilterSelect={this.onFilterSelect}
+                filter={filter}
                 />
                 
             </div>
