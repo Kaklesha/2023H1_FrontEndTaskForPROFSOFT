@@ -43,6 +43,7 @@ class App  extends Component {
         })
     }
     addItem = (name,salary) =>{
+        if(name.length<2||isFinite(name)||!isFinite(salary)||salary===0){return}
     const newItem={
         name,
         salary,
