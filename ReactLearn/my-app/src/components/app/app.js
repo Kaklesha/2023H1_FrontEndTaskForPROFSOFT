@@ -9,8 +9,8 @@ import EmployeesAddForm from '../emploees-add-form/employees-add-form';
 
 import './app.css';
 
-class App  extends Component {
-    constructor(props){
+class App  extends Component { 
+    constructor(props){ 
         super(props)
         this.state={
             data: [
@@ -110,6 +110,16 @@ class App  extends Component {
         return( this.state.data.length)
     }
 
+    countIncrease=()=>{
+        let countIns=0;
+        this.state.data.map(item=>{
+            if(item.increase===true){
+                countIns++;
+            }
+        })
+
+        return countIns;
+    }
 
 
     onToggleRise=(id)=>{
@@ -123,6 +133,7 @@ class App  extends Component {
             <AppInfo
            
             countEmployees={this.countEmployees()}
+            countIncrease={this.countIncrease()}
             />
 
             <div className="search-panel">
