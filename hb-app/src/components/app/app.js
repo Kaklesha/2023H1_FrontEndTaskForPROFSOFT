@@ -71,8 +71,9 @@ class App extends Component{
     filterEmps = (items, filter) => {
         switch (filter) {
             case "all": return items;
-            case "raise": return items.filter(elem => elem.isRise);
+            case "rise": return items.filter(elem => elem.isRise);
             case "more": return items.filter(elem => elem.salary > 1000)
+            default: return items;
         }
     }
 
@@ -82,13 +83,22 @@ class App extends Component{
         }
         
         return items.filter(item => {
-            return item.name.toLowerCase().indexOf(term) > -1;
+            return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
         })
     }
 
     render() {
         const {data, term, filter} = this.state;
         const visibleData = this.filterEmps(this.updateEmps(data, term), filter);
+        fetch('http://localhost:9000/api/employees', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                },
+            })
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+        .catch(e => console.log(e))
 
         return (
             <div className="app">
@@ -100,7 +110,8 @@ class App extends Component{
                     <SearchPanel
                     getTerm={this.getTerm}/>
                     <AppFilter
-                    getFilter={this.getFilter}/>
+                    getFilter={this.getFilter}
+                    filter={this.state.filter}/>
                 </div>
     
                 <EmployeesList 

@@ -12,9 +12,9 @@ const EmployeesListItem = (props) => {
             <input type='text' className="list-group-item-input" defaultValue={salary + "$"}/>
             <div className="d-flex justify-content-center align-item-center">
                 <button onClick={onToggleProp} type="button"
-                    className ="btn-cookie btn-sm"
+                    className ="btn-up btn-sm"
                     data-toggle="isIncrease">
-                    <i className='fas fa-cookie'></i>
+                    <i className='fas fa-arrow-up'></i>
                 </button>
 
                 <button onClick={onDelete} type="button"
