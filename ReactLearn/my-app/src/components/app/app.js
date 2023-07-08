@@ -19,7 +19,8 @@ class App  extends Component {
                 {name: 'Вася' , salary: '25900',increase:false, id:3 , like:false},
                 {name: 'Коля' , salary: '21000',increase:true, id:4 , like:false}
             ],
-
+            
+            
             
             term: '', filter: 'all'
            
