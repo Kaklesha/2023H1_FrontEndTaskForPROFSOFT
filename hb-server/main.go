@@ -47,13 +47,21 @@ func main() {
 	// log.Fatal(http.ListenAndServe(":9000", r))
 	fmt.Println("Go MySQL Tutorial")
 
-	db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/testdb")
+	db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/employees")
 
 	if err != nil {
 		panic(err.Error())
 	}
 
 	defer db.Close()
+
+	insert, err := db.Query("INSERT INTO users VALUES('ELIOT')")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	defer insert.Close()
 
 	fmt.Println("Successfully Connected to MySQL database")
 }
