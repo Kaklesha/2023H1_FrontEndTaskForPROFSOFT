@@ -45,7 +45,6 @@ func main() {
 	// fmt.Println("Starting the server on port 9000...")
 
 	// log.Fatal(http.ListenAndServe(":9000", r))
-	fmt.Println("Go MySQL Tutorial")
 
 	db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/employees")
 
