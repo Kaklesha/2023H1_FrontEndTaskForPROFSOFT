@@ -13,8 +13,6 @@ class App  extends Component {
     constructor(props){ 
         super(props)
         this.state={
-          // data: [ {  id:1, name: 'Иван' , salary: '8000' ,increase:false,  like:true},],
-          //  data: 
             data: [],
             // [
             //    
@@ -22,21 +20,12 @@ class App  extends Component {
             //     {  id:3, name: 'Вася' , salary: '25900',increase:false,  like:false},
             //     {  id:4, name: 'Коля' , salary: '21000',increase:true,   like:false}
             // ],
-
-
-
             term: '', filter: 'all', isDown:false,  lastId: 0,
-           
         }
-      
     }
- 
     deleteItem =(id)=>{
-        //console.log(id)
         this.setState(({data})=>{
             const index = data.findIndex(elem=>elem.id===id )
-            //console.log(index);
-            // data.splice(index,1);
         //// 1 ver
             // const before = data.slice(0,index);
             // const after = data.slice(index+1);
@@ -67,9 +56,7 @@ class App  extends Component {
     });
     }
 
-
     downloadItemFetch =()=>{
-   
         fetch('http://localhost:9000/api/employees',
         {
             method: "GET",
@@ -77,19 +64,11 @@ class App  extends Component {
                 'Accept': 'application/json',
             },
         })
-
         .then(response=>response.json())
 
         .then( response=> {this.setState(({data})=> {
-
-                 // let  maxId = 
-                    
-                 //console.log(`dddd ${maxId}`);
-
                     const newArr = [...data,...response];
-                    console.log(newArr);
-                    
-                   // console.log(`dddd ${newArr[newArr.length-1]['id']}`);
+                   // console.log(newArr);
                         return{
                             data: newArr,
                             isDown: true,
@@ -98,44 +77,8 @@ class App  extends Component {
                     }
                    )}
             )
-
-        //console.log(response)
         .catch(e=>console.log(e));
-}
-
-
-    // addItemFetch = (data,response) =>{
-   
-    //         fetch('http://localhost:9000/api/employees',
-    //         {
-    //             method: "GET",
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //             },
-    //         })
-
-    //         .then(response=>response.json())
-
-    //         .then(response=>
-    //         {
- 
-    //             this.setState(({data},response)=>
-    //             {
-    //                 const newArr = [...data,response];
-    //                 console.log(newArr);
-    //                 return 
-    //                 {
-    //                     data: newArr
-                        
-    //                 }
-                    
-    //             });
-    //         })
-
-    //         //console.log(response)
-    //         .catch(e=>console.log(e));
-    // }
-
+    }
     ////This is Update random obj (?)
     onToggleProp = (id,prop)=>{
 
@@ -162,7 +105,6 @@ class App  extends Component {
     onUpdateSearch=(term)=>{
         this.setState({term});
     }
- 
     filterPost=(items,filter)=>{
             switch(filter)
             {
@@ -171,10 +113,8 @@ class App  extends Component {
                 case 'moreThen20000':
                     return items.filter(item=> item.salary>20000)
                 default:
-                    return items
-                
+                    return items 
             }
-
     }
     onFilterSelect=(filter)=>{
         this.setState({filter});
@@ -184,32 +124,12 @@ class App  extends Component {
 
     const{data,term,filter,isDown}=this.state;
 
-
-    
-
-
-if(!isDown)this.downloadItemFetch();
-
-   // const datafetch= 
-
-
-    //{"id":2,"name":"Title","salary":18000,"increase":true,"like":false}
-
-
-
-  //addItemFetch(data,response);
+    if(!isDown)this.downloadItemFetch();
 
     const employees = this.state.data.length;
     const increased = this.state.data.filter(item=>item.increase).length;
 
     let visibleData=this.filterPost(this.searchEmp(data,term), filter);
- 
-
-    
-    
-    //http://localhost:9000/api/employees
-
-
     return(
         <div className="app">
             <AppInfo

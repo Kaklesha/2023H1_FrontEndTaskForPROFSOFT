@@ -21,18 +21,26 @@ class EmployeesAddForm extends Component {
         )
     }
 
-    onClickAddItem=(e)=>{
-        e.preventDefault();
-        this.props.onAddItem( (this.state.name).toString(),Number(this.state.salary))}
+    // onClickAddItem=(e)=>{
+    //     e.preventDefault();
+    //     this.props.onAddItem( (this.state.name).toString(),Number(this.state.salary))}
     
     onSubmit=(e)=>{
         e.preventDefault();
-        if(this.state.name.length<2||!this.state.salary)return;
+        if(this.state.name.length<2||!this.state.salary){
+
+            this.setState({
+                name:'',
+                salary: ''
+            })
+            return
+        }
         this.props.onAddItem(this.state.name,this.state.salary);
         this.setState({
             name:'',
             salary: ''
         })
+        
     }
 
    render(){
@@ -52,7 +60,7 @@ class EmployeesAddForm extends Component {
                         placeholder="3\П в RUB" value={salary} name="salary" onChange={this.onValueChange}/>
                 
                   <button type="submit"
-                        className="btn btn-outline-light" onClick={this.onClickAddItem}>Добавить</button>
+                        className="btn btn-outline-light" >Добавить</button>
             </form>
 
 

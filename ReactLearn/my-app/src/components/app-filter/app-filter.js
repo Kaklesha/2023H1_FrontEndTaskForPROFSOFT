@@ -7,7 +7,7 @@ const buttonsData=[
     
         {name:'all', label: "Все сотрудники"},
        { name:'rise', label: "На повышение"},
-         {  name:'moreThen20000', label: "З/П более 50000 руб"}
+         {  name:'moreThen20000', label: "З/П более 20000 руб"}
     
 ];
 
