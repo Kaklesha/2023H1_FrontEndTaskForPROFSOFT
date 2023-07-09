@@ -16,7 +16,6 @@ class App  extends Component {
           // data: [ {  id:1, name: 'Иван' , salary: '8000' ,increase:false,  like:true},],
           //  data: 
             data: [],
-
             // [
             //    
             //     {  id:2, name: 'Егор' , salary: '17000' ,increase:false,  like:false},
@@ -24,10 +23,12 @@ class App  extends Component {
             //     {  id:4, name: 'Коля' , salary: '21000',increase:true,   like:false}
             // ],
 
-            term: '', filter: 'all', isDown:false,
+
+
+            term: '', filter: 'all', isDown:false,  lastId: 0,
            
         }
-        this. lastId= 1;
+      
     }
  
     deleteItem =(id)=>{
@@ -56,7 +57,7 @@ class App  extends Component {
         salary,
         increase: false,
         like: false,
-        id: this.lastId++
+        id: this.state.lastId++
     }
     this.setState(({data})=>{
         const newArr = [...data,newItem];
@@ -80,12 +81,19 @@ class App  extends Component {
         .then(response=>response.json())
 
         .then( response=> {this.setState(({data})=> {
+
+                 // let  maxId = 
+                    
+                 //console.log(`dddd ${maxId}`);
+
                     const newArr = [...data,...response];
                     console.log(newArr);
                     
+                   // console.log(`dddd ${newArr[newArr.length-1]['id']}`);
                         return{
                             data: newArr,
-                            isDown: true
+                            isDown: true,
+                            lastId: newArr[newArr.length-1]['id']+1
                         }
                     }
                    )}
