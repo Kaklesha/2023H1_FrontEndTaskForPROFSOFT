@@ -1,22 +1,20 @@
-import { Component } from 'react';
+import { Component, useEffect } from 'react';
 
 import AppInfo from "../app-info/app-info";
 import SearchPanel from "../search-panel/search-panel";
 import AppFilter from "../app-filter/app-filter";
 import EmployeesList from "../employees-list/employees-list";
 import EmployeesAddForm from "../employees-add-form/employees-add-form";
+import DataLoader from '../DataLoader/DataLoader';
 
 import "./app.css";
+import React from "react";
 
 class App extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {name: "John Conor", salary: 800, isIncrease: false, isRise: false, id: 1},
-                {name: "Peter Parker", salary: 3000, isIncrease: false, isRise: false, id: 2},
-                {name: "Carl Johnson", salary: 5000, isIncrease: false, isRise: false, id: 3},
-            ],
+            data: undefined,
             term: "",
             filter: "all"
         }
@@ -24,6 +22,12 @@ class App extends Component{
 
     deleteItem = (id) => {
         this.setState(({data}) => {
+            fetch(`http://localhost:9000/api/employee/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                }
+            });
             return {
                 data: data.filter(item => item.id !== id)
             }
@@ -36,12 +40,19 @@ class App extends Component{
             const newId = Math.max.apply(null, ids) + 1
 
             const employee = {
+                id: newId,
                 name: name,
-                salary: salary,
+                salary: Number(salary),
                 isIncrease: false,
                 isRise: false,
-                id: newId
             };
+            fetch('http://localhost:9000/api/employee', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify(employee)
+            });
             let newData = [...data, employee];
             return {
                 data: newData
@@ -53,7 +64,23 @@ class App extends Component{
         this.setState(({data}) => ({
             data: data.map(item => {
                 if (item.id == id){
+                    this.updateData({...item, [prop]: !item[prop]});
                     return {...item, [prop]: !item[prop]}
+                }
+                return item;
+            })
+        }))
+    }
+
+    onChangeSalary = (id, salary) => {
+        this.setState(({data}) => ({
+            data: data.map(item => {
+                if (item.id == id){
+                    const num = Number(salary.slice(0, -1))
+                    if (num >= 0) {
+                        this.updateData({...item, salary: num});
+                        return {...item, salary: num}
+                    }
                 }
                 return item;
             })
@@ -87,41 +114,54 @@ class App extends Component{
         })
     }
 
+    loadData = (newData) => {
+        this.setState(() => ({
+            data: newData
+        }))  
+    }
+
+    updateData = (employee) => {
+        fetch('http://localhost:9000/api/alteremployee', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify(employee)
+        });
+    }
+
     render() {
         const {data, term, filter} = this.state;
-        const visibleData = this.filterEmps(this.updateEmps(data, term), filter);
-        fetch('http://localhost:9000/api/employees', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                },
-            })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
-        .catch(e => console.log(e))
+        if (data == undefined) {
+            return (<DataLoader loadData={this.loadData}/>)
+        }
+        else {
+            const visibleData = this.filterEmps(this.updateEmps(data, term), filter);
 
-        return (
-            <div className="app">
-                <AppInfo
-                empAmnt={data.length}
-                empIncr={this.state.data.filter(item => item.isIncrease).length}/>
-    
-                <div className="search-panel">
-                    <SearchPanel
-                    getTerm={this.getTerm}/>
-                    <AppFilter
-                    getFilter={this.getFilter}
-                    filter={this.state.filter}/>
+            return (
+                <div className="app">
+                    <AppInfo
+                    empAmnt={data.length}
+                    empIncr={this.state.data.filter(item => item.isIncrease).length}/>
+        
+                    <div className="search-panel">
+                        <SearchPanel
+                        getTerm={this.getTerm}/>
+                        <AppFilter
+                        getFilter={this.getFilter}
+                        filter={this.state.filter}/>
+                    </div>
+        
+                    <EmployeesList 
+                        data={visibleData}
+                        onDelete={this.deleteItem}
+                        onToggleProp={this.onToggleProp}
+                        onChangeSalary={this.onChangeSalary}/>
+                    <EmployeesAddForm
+                        onAdd={this.addItem}/>
                 </div>
-    
-                <EmployeesList 
-                    data={visibleData}
-                    onDelete={this.deleteItem}
-                    onToggleProp={this.onToggleProp}/>
-                <EmployeesAddForm
-                    onAdd={this.addItem}/>
-            </div>
-        )
+            )
+        }
     }
 }
 
