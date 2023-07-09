@@ -13,19 +13,21 @@ class App  extends Component {
     constructor(props){ 
         super(props)
         this.state={
-            data: [
-                {name: 'Иван' , salary: '8000' ,increase:false, id:1 , like:true},
-                {name: 'Егор' , salary: '17000' ,increase:false, id:2 , like:false},
-                {name: 'Вася' , salary: '25900',increase:false, id:3 , like:false},
-                {name: 'Коля' , salary: '21000',increase:true, id:4 , like:false}
-            ],
-            
-            
-            
-            term: '', filter: 'all'
+          // data: [ {  id:1, name: 'Иван' , salary: '8000' ,increase:false,  like:true},],
+          //  data: 
+            data: [],
+
+            // [
+            //    
+            //     {  id:2, name: 'Егор' , salary: '17000' ,increase:false,  like:false},
+            //     {  id:3, name: 'Вася' , salary: '25900',increase:false,  like:false},
+            //     {  id:4, name: 'Коля' , salary: '21000',increase:true,   like:false}
+            // ],
+
+            term: '', filter: 'all', isDown:false,
            
         }
-        this. lastId= 5;
+        this. lastId= 1;
     }
  
     deleteItem =(id)=>{
@@ -63,6 +65,69 @@ class App  extends Component {
         }
     });
     }
+
+
+    downloadItemFetch =()=>{
+   
+        fetch('http://localhost:9000/api/employees',
+        {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+            },
+        })
+
+        .then(response=>response.json())
+
+        .then( response=> {this.setState(({data})=> {
+                    const newArr = [...data,...response];
+                    console.log(newArr);
+                    
+                        return{
+                            data: newArr,
+                            isDown: true
+                        }
+                    }
+                   )}
+            )
+
+        //console.log(response)
+        .catch(e=>console.log(e));
+}
+
+
+    // addItemFetch = (data,response) =>{
+   
+    //         fetch('http://localhost:9000/api/employees',
+    //         {
+    //             method: "GET",
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //             },
+    //         })
+
+    //         .then(response=>response.json())
+
+    //         .then(response=>
+    //         {
+ 
+    //             this.setState(({data},response)=>
+    //             {
+    //                 const newArr = [...data,response];
+    //                 console.log(newArr);
+    //                 return 
+    //                 {
+    //                     data: newArr
+                        
+    //                 }
+                    
+    //             });
+    //         })
+
+    //         //console.log(response)
+    //         .catch(e=>console.log(e));
+    // }
+
     ////This is Update random obj (?)
     onToggleProp = (id,prop)=>{
 
@@ -85,6 +150,7 @@ class App  extends Component {
         })
 
     }
+
     onUpdateSearch=(term)=>{
         this.setState({term});
     }
@@ -101,22 +167,39 @@ class App  extends Component {
                 
             }
 
-        }
-    
-
-            onFilterSelect=(filter)=>{
-                this.setState({filter});
-            }
+    }
+    onFilterSelect=(filter)=>{
+        this.setState({filter});
+    }
 
   render(){
 
-    const{data,term,filter}=this.state;
+    const{data,term,filter,isDown}=this.state;
+
+
+    
+
+
+if(!isDown)this.downloadItemFetch();
+
+   // const datafetch= 
+
+
+    //{"id":2,"name":"Title","salary":18000,"increase":true,"like":false}
+
+
+
+  //addItemFetch(data,response);
 
     const employees = this.state.data.length;
     const increased = this.state.data.filter(item=>item.increase).length;
 
     let visibleData=this.filterPost(this.searchEmp(data,term), filter);
  
+
+    
+    
+    //http://localhost:9000/api/employees
 
 
     return(
