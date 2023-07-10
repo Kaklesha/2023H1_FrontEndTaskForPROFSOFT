@@ -6,7 +6,6 @@ import (
 	
 	"fmt"
 	// "log"
-	
 	"net/http"
 	"encoding/json"
 	"github.com/gorilla/mux"
@@ -27,9 +26,9 @@ type Articles []Article
 func allAtricles(w http.ResponseWriter, r *http.Request) {
 	epm := Articles{
 		//Article{1, "Test Title", 10000, false, true},
-		 Article{ID: 2, Name: "Title", Salary: 18000, Increase: true, Like: false},
-		 Article{ID: 3, Name: "Guth", Salary: 21000, Increase: false, Like: true},
-		Article{ID: 4, Name: "Ivan", Salary: 35000, Increase: true, Like: false},
+		 Article{ID: 5, Name: "Title", Salary: 18000, Increase: true, Like: false},
+		 Article{ID: 6, Name: "Guth", Salary: 21000, Increase: false, Like: true},
+		Article{ID: 7, Name: "Ivan", Salary: 35000, Increase: true, Like: false},
 		
 
 	}
@@ -57,6 +56,30 @@ func Router() *mux.Router {
 	return 	myRouter
 }
 
+func CountFromTable(){
+
+	db, err := sql.Open("mysql", "test_user:1410@/my_db")
+
+	count, err := db.Query("SELECT count(*) FROM Employees ")
+
+	if err != nil{
+		panic(err.Error())
+	}
+	
+	for count.Next(){
+	var inc int
+	err = count.Scan(&inc)
+	if err != nil{
+		panic(err.Error())
+	}
+	fmt.Println(inc)
+    }
+
+	//return inc 
+
+}
+
+
 func main() {
 	// fmt.Println("Citizix - Hello World!")
 	// r := Router()
@@ -72,20 +95,28 @@ func main() {
 	}
 	defer db.Close()
 
-	var version string
-	var subdata string
-	db.QueryRow("SELECT VERSION()").Scan(&version)
+	results, err := db.Query("SELECT id, name, salary, increase, rise FROM Employees ")
+	if err != nil{
+		panic(err.Error())
+	}
 
-	db.QueryRow("SELECT * FROM `Employees` ").Scan(&subdata )
+		epm := Articles{}
 
+	for results.Next(){
+		var user Article
+		err = results.Scan(&user.ID, &user.Name, &user.Salary, &user.Increase,&user.Like)
+		if err != nil{
+			panic(err.Error())
+		}
+		epm =append(epm , user)
+		
 
-	fmt.Println("Connected to:",version)
-	fmt.Println("Connected to:",subdata)
-	// var wg sync.WaitGroup
-	// for i := 0; i
+		
+	}
+	fmt.Println(epm)
+
 
 	fmt.Println("Successfully connected to MariaBD database")
-	
 	//fmt.Println("")
 
 }
