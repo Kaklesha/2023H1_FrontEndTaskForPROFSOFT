@@ -1,14 +1,17 @@
+//skysql:dellis$ cat gomaria.go
+
 package main
 
 import (
 	
 	"fmt"
-	"log"
-	//"database/sql"
+	// "log"
+	
 	"net/http"
 	"encoding/json"
 	"github.com/gorilla/mux"
-	//"github.com/go-sql-driver/mysql"
+	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type Article struct {
@@ -49,18 +52,42 @@ func Router() *mux.Router {
 
 	myRouter := mux.NewRouter()
 
-
-	//myRouter.HandleFunc("/", homePage)
 	myRouter.HandleFunc("/api/employees", allAtricles).Methods("GET","OPTIONS")
-	//myRouter.HandleFunc("/articles", testPostAtricles).Methods("POST")
 
 	return 	myRouter
 }
 
 func main() {
-	fmt.Println("Citizix - Hello World!")
+	// fmt.Println("Citizix - Hello World!")
+	// r := Router()
+	// log.Fatal(http.ListenAndServe(":9000", r))
 
+	fmt.Println("Check for connect DB")
+
+	//db, err := sql.Open("mysql", "test_user:1410@tcp(127.0.0.1:3306)/my_db")
+	db, err := sql.Open("mysql", "test_user:1410@/my_db")
+
+	if err != nil{
+		panic(err.Error())
+	}
+	defer db.Close()
+
+	var version string
+	var subdata string
+	db.QueryRow("SELECT VERSION()").Scan(&version)
+
+	db.QueryRow("SELECT * FROM `Employees` ").Scan(&subdata )
+
+
+	fmt.Println("Connected to:",version)
+	fmt.Println("Connected to:",subdata)
+	// var wg sync.WaitGroup
+	// for i := 0; i
+
+	fmt.Println("Successfully connected to MariaBD database")
 	
-	r := Router()
-	log.Fatal(http.ListenAndServe(":9000", r))
+	//fmt.Println("")
+
 }
+
+
