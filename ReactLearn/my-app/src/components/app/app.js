@@ -30,6 +30,16 @@ class App  extends Component {
         }
     }
     deleteItem =(id)=>{
+        
+        fetch(`http://localhost:9000/api/employees/${id}`,{
+            method: "POST",
+            mode:"no-cors",
+            headers:{
+                "Accept": 'application/json',
+            }
+           
+        });
+
         this.setState(({data})=>{
             const index = data.findIndex(elem=>elem.id===id )
         //// 1 ver

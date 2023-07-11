@@ -63,10 +63,6 @@ func getArticle(w http.ResponseWriter, r *http.Request) {
 		epm =append(epm , user)
 	}
 	fmt.Println(epm)
-	fmt.Println("Successfully connected to MariaBD database")
-
-
-	fmt.Println(epm)
 	
 	json.NewEncoder(w).Encode(epm)
 }
@@ -92,6 +88,29 @@ func AddArticle(w http.ResponseWriter, r *http.Request){
 	json.NewEncoder(w).Encode(epm)
 }
 
+
+func DeleteArticle(w http.ResponseWriter, r *http.Request){
+	fmt.Fprintf(w, "TEst DELETE Endpoint Hi")
+	w.Header().Set("Accept","application/json")
+	w.Header().Set("Access-Control-Allow-Origin","*")
+	w.Header().Set("Access-Control-Allow-Methods","POST")
+
+	params:=mux.Vars(r)
+	
+
+	database :=	connectWithDB()
+
+	delete, err := database.Query("DELETE FROM Employees WHERE id=?;", params["id"])
+	defer database.Close()
+	if err != nil{
+		panic(err.Error())
+	}
+	defer delete.Close()
+
+	json.NewEncoder(w).Encode(delete)
+}
+
+
 // func homePage(w http.ResponseWriter, r *http.Request) {
 // 	fmt.Fprintf(w, "Hmepage Endpoint Hit")
 // }
@@ -102,7 +121,7 @@ func Router() *mux.Router {
 
 	myRouter.HandleFunc("/api/employees", getArticle).Methods("GET","OPTIONS")
 	myRouter.HandleFunc("/api/employees", AddArticle).Methods("POST","OPTIONS")
-
+	myRouter.HandleFunc("/api/employees/{id}", DeleteArticle).Methods("POST","OPTIONS")
 	return 	myRouter
 }
 
@@ -139,6 +158,10 @@ func connectWithDB() *sql.DB {
 		panic(err.Error())
 	}
 	//database = db
+	
+	fmt.Println("Successfully connected to MariaBD database")
+
+
 	
 	return db
 }
