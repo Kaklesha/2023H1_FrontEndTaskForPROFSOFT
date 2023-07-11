@@ -1,4 +1,8 @@
 import { Component } from 'react';
+//import 'fetch';
+//import {HttpClient, json} from 'aurelia-fetch-client';
+
+
 
 import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
@@ -6,6 +10,8 @@ import AppFilter from '../app-filter/app-filter';
 import EmployeesListItem from '../employeers-list-item/employees-list-item';
 import EmployeesList from '../employees-list/employees-list';
 import EmployeesAddForm from '../emploees-add-form/employees-add-form';
+
+
 
 import './app.css';
 
@@ -43,17 +49,30 @@ class App  extends Component {
             
         const newItem={
         name,
-        salary,
+        salary: Number(salary) ,
         increase: false,
         like: false,
-        id: this.state.lastId++
+        id: 0
+
+        
+        
     }
-    this.setState(({data})=>{
-        const newArr = [...data,newItem];
-        return {
-            data: newArr
-        }
+
+    fetch('http://localhost:9000/api/employees',{
+        method: "POST",
+        mode:"no-cors",
+        headers:{
+            "Accept": 'application/json',
+        },
+        body: JSON.stringify(newItem)
     });
+
+    // this.setState(({data})=>{
+    //     const newArr = [...data,newItem];
+    //     return {
+    //         data: newArr
+    //     }
+    // });
     }
 
     downloadItemFetch =()=>{

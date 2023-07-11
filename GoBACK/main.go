@@ -26,8 +26,13 @@ type Article struct {
 type Articles []Article
 
 
+// Uncaught runtime errors:
+// ERROR
+// NetworkError when attempting to fetch resource.
 
-func getArticles(w http.ResponseWriter, r *http.Request) {
+
+
+func getArticle(w http.ResponseWriter, r *http.Request) {
 	// epm := Articles{
 	// 	//Article{1, "Test Title", 10000, false, true},
 	// 	 Article{ID: 5, Name: "Title", Salary: 18000, Increase: true, Like: false},
@@ -83,8 +88,6 @@ func AddArticle(w http.ResponseWriter, r *http.Request){
 		panic(err.Error())
 	}
 	defer insert.Close()
-	
-
 
 	json.NewEncoder(w).Encode(epm)
 }
@@ -97,7 +100,7 @@ func Router() *mux.Router {
 
 	myRouter := mux.NewRouter()
 
-	myRouter.HandleFunc("/api/employees", getArticles).Methods("GET","OPTIONS")
+	myRouter.HandleFunc("/api/employees", getArticle).Methods("GET","OPTIONS")
 	myRouter.HandleFunc("/api/employees", AddArticle).Methods("POST","OPTIONS")
 
 	return 	myRouter
