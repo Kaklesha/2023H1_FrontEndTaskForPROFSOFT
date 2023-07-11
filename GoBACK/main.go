@@ -66,11 +66,27 @@ func getArticles(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(epm)
 }
 
-func postArticles(w http.ResponseWriter, r *http.Request){
+func AddArticle(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w, "TEst POST Endpoint Hi")
+	w.Header().Set("Accept","application/json")
+	w.Header().Set("Access-Control-Allow-Origin","*")
+	w.Header().Set("Access-Control-Allow-Methods","POST")
+
+	var epm Article
+	json.NewDecoder(r.Body).Decode(&epm)
+
+	database :=	connectWithDB()
+
+	insert, err := database.Query("INSERT INTO Employees VALUES(?,?,?,?,?);", nil, epm.Name, epm.Salary, epm.Increase, epm.Like)
+	defer database.Close()
+	if err != nil{
+		panic(err.Error())
+	}
+	defer insert.Close()
+	
 
 
-
+	json.NewEncoder(w).Encode(epm)
 }
 
 // func homePage(w http.ResponseWriter, r *http.Request) {
@@ -82,7 +98,7 @@ func Router() *mux.Router {
 	myRouter := mux.NewRouter()
 
 	myRouter.HandleFunc("/api/employees", getArticles).Methods("GET","OPTIONS")
-	myRouter.HandleFunc("/api/employees", postArticles).Methods("POST","OPTIONS")
+	myRouter.HandleFunc("/api/employees", AddArticle).Methods("POST","OPTIONS")
 
 	return 	myRouter
 }
